@@ -500,8 +500,6 @@ body.addEventListener('dblclick', e => {
 
 function addEvsFromPokemon(element, evsMap, team) {
   const name = element.innerText;
-  document.getElementById('name_input').value = '';
-  document.getElementById('list_div').innerHTML = '';
   const checkboxes = document.getElementsByClassName('pokemon_check');
   const ids = [];
   for (let i = 0; i < checkboxes.length; i++) {
@@ -510,6 +508,13 @@ function addEvsFromPokemon(element, evsMap, team) {
     }
     checkboxes[i].checked = false;
   }
+  if (ids.length === 0) {
+    alert('No team member selected!');
+    return;
+  }
+
+  document.getElementById('name_input').value = '';
+  document.getElementById('list_div').innerHTML = '';
   
   const pokemon = findPokemonByName(evsMap, name);
   ids.forEach(id => {
